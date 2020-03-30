@@ -1,0 +1,7 @@
+<div class="growl {{ growlMessage.state }}" [ngClass]="{'shadow' : growlMessage.shadow, 'closed' : isClosed}">
+    <div class="growl-title">{{ growlMessage.title ? growlMessage.title : (growlMessage.state | titlecase) + ' Message'}}</div>
+    <ul>
+        <li *ngFor="let message of growlMessage.messages">{{ message }}</li>
+    </ul>
+    <span class="close" (click)="closeGrowl()">&times;</span>
+</div>

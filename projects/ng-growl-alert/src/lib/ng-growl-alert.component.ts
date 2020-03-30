@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-ng-Growl-Alert',
-  template: `
-    <p>
-      ng-growl-alert works!
-    </p>
-  `,
-  styles: []
+  selector: 'ng-growl-alert',
+  templateUrl: './ng-growl-alert.component.html',
+  styleUrls: ['./ng-growl-alert.component.css']
 })
 export class NgGrowlAlertComponent implements OnInit {
 

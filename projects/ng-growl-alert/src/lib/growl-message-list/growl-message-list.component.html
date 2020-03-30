@@ -1,0 +1,3 @@
+<div class="growl-container">
+    <growl-message *ngFor="let growl of growlMessages; let i = index" [message]="growl" [index]="i" (closed)="onCloseGrowl($event)"></growl-message>
+</div>

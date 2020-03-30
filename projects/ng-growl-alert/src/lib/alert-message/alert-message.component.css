@@ -1,0 +1,149 @@
+.backdrop {
+    position  : fixed;
+    top       : 0;
+    left      : 0;
+    width     : 100vw;
+    height    : 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    z-index   : 99999;
+}
+
+.alert-box {
+    position    : absolute;
+    top         : 25vh;
+    right       : 0px;
+    left        : 0px;
+    width       : 40vw;
+    height      : auto;
+    max-height  : 50vh;
+    z-index     : 999999;
+    background  : white;
+    box-shadow  : 0, 2px, 8px, rgba(0, 0, 0, 0.25);
+    min-width   : 300px;
+    margin-left : auto;
+    margin-right: auto;
+}
+
+.alert-box P {
+    margin-top   : 0;
+    margin-bottom: 16px;
+}
+
+.alert-header {
+    display        : flex;
+    display        : -ms-flexbox;
+    align-items    : flex-start;
+    -ms-flex-align : start;
+    justify-content: space-between;
+    padding        : 10px;
+}
+
+.alert-title {
+    padding  : 0px;
+    margin   : 0px;
+    font-size: 20px;
+}
+
+.alert-body {
+    padding      : 16px 16px;
+    border-top   : 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.alert-footer {
+    padding: 10px;
+}
+
+.alert-actions {
+    text-align: right;
+}
+
+.alert-btn {
+    cursor          : pointer;
+    display         : inline-block;
+    font-weight     : 400;
+    color           : #212529;
+    text-align      : center;
+    vertical-align  : middle;
+    user-select     : none;
+    background-color: transparent;
+    border          : 1px solid transparent;
+    padding         : .25rem .5rem;
+    font-size       : 14px;
+    line-height     : 1.5;
+    border-radius   : 3.2px;
+    margin          : 4px;
+    transition      : color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.alert-btn.okay-btn,
+.alert-btn.yes-btn {
+    color           : #fff;
+    background-color: #007bff;
+    border-color    : #007bff;
+}
+
+.alert-btn.okay-btn:hover,
+.alert-btn.yes-btn:hover {
+    background-color: #0069d9;
+    border-color    : #0062cc;
+}
+
+.alert-btn.okay-btn:focus,
+.alert-btn.yes-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38,143,255,.5);
+}
+
+.alert-btn.no-btn {
+    color           : #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.alert-btn.no-btn:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.alert-btn.no-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(130,138,145,.5);
+}
+
+.alert-btn.cancel-btn {
+    color           : #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.alert-btn.cancel-btn:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+.alert-btn.cancel-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(58,176,195,.5);
+}
+
+
+.alert-btn.close-btn {
+    padding         : 10px;
+    margin          : -10px -10px -10px auto;
+    background-color: transparent;
+    border          : 0px;
+    appearance      : none;
+    float           : right;
+    font-size       : 24px;
+    font-weight     : 700;
+    line-height     : 1;
+    color           : black;
+    text-shadow     : 0 1px 0 white;
+    opacity         : 0.5;
+
+}
+
+.alert-btn.close-btn:hover,
+.alert-btn.close-btn:focus {
+    outline        : none;
+    opacity        : 1;
+    text-decoration: none;
+}

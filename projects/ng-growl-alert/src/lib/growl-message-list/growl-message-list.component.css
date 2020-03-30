@@ -1,0 +1,9 @@
+.growl-container {
+    position        : fixed !important;
+    top             : 5px !important;
+    right           : 5px !important;
+    height          : auto !important;
+    width           : 350px !important;
+    background-color: transparent !important;
+    z-index         : 9999999;
+}
