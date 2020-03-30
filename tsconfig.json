@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng-growl-alert": [
+        "dist/ng-growl-alert"
+      ],
+      "ng-growl-alert/*": [
+        "dist/ng-growl-alert/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
