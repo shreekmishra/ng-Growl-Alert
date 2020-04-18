@@ -27,11 +27,30 @@ export interface GrowlMessage {
   timeout?: number;
 }
 
+export enum AlertConfirmResponse {
+  ALERT_OKAY = "O",
+  ALERT_CLOSE = "C",
+  CONFIRM_CANCEL = "C",
+  CONFIRM_YES = "Y",
+  CONFIRM_NO = "N"
+}
+
 @Injectable({ providedIn: 'root' })
 export class NgGrowlAlertService {
+  /**
+   * This one is triggered when new Alert or Confirm box is shown.
+   */
   alertMessageSub = new Subject<AlertMessage>();
-  alertMessageResponse = new Subject<boolean>();
+
+  /**
+   * This one is triggered when a new Growl message is show.
+   */
   growlMessageSub = new Subject<GrowlMessage>();
+
+  /**
+   * This triggered when use takes action on Alert box.
+   */
+  alertMessageResponse = new Subject<AlertConfirmResponse>();
 
   constructor() { }
 
@@ -42,7 +61,7 @@ export class NgGrowlAlertService {
    * @param allowClose If true, a cross button on top right corner to close the box. (Default: false)
    * @returns Observable to subscripe with response, true if user clicked Okay else null 
    */
-  alert(message: string, title?: string, allowClose?: boolean): Subject<boolean> | Observable<boolean> {
+  alert(message: string, title?: string, allowClose?: boolean): Subject<AlertConfirmResponse> | Observable<AlertConfirmResponse> {
     return this.openDialog({ alertMessage: message, alertTitle: title, allowClose: allowClose, isConfirmation: false, allowCancel: false });
   }
 
@@ -55,11 +74,11 @@ export class NgGrowlAlertService {
    * 
    * @returns Observable to subscribe with response, true if user clicked 'Yes', false if user clicked 'No' and null if user clicked 'Cancel'
    */
-  confirm(message: string, title?: string, allowCancel?: boolean): Subject<boolean> | Observable<boolean> {
+  confirm(message: string, title?: string, allowCancel?: boolean): Subject<AlertConfirmResponse> | Observable<AlertConfirmResponse> {
     return this.openDialog({ alertMessage: message, alertTitle: title, allowClose: false, allowCancel: allowCancel, isConfirmation: true });
   }
 
-  openDialog(alertMessage: AlertMessage): Subject<boolean> | Observable<boolean> {
+  private openDialog(alertMessage: AlertMessage): Subject<AlertConfirmResponse> | Observable<AlertConfirmResponse> {
     this.alertMessageSub.next(alertMessage);
     return this.alertMessageResponse.pipe(take(1));
   }
@@ -80,7 +99,7 @@ export class NgGrowlAlertService {
     this.showGrowl(message, title, GrowlState.WARNING, duration);
   }
 
-  showGrowl(message: string | string[], title?: string, state: GrowlState = GrowlState.DEFAULT, duration: boolean | number = 3000) {
+  private showGrowl(message: string | string[], title?: string, state: GrowlState = GrowlState.DEFAULT, duration: boolean | number = 3000) {
     let growlMessage: GrowlMessage = {
       messages: (message instanceof Array) ? message : [message],
       title: title,
@@ -92,7 +111,7 @@ export class NgGrowlAlertService {
     this.displayGrowl(growlMessage);
   }
 
-  displayGrowl(growlMessage: GrowlMessage) {
+  private displayGrowl(growlMessage: GrowlMessage) {
     this.growlMessageSub.next(growlMessage);
   }
 

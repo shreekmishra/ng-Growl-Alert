@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgGrowlAlertService, GrowlMessage } from '../ng-growl-alert.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'growl-message-list',
@@ -8,10 +9,12 @@ import { NgGrowlAlertService, GrowlMessage } from '../ng-growl-alert.service';
 })
 export class GrowlMessageListComponent implements OnInit, OnDestroy {
   growlMessages: GrowlMessage[] = [];
+  private growlMessageSub : Subscription;
+
   constructor(private growlService: NgGrowlAlertService) { }
 
   ngOnInit() {
-    this.growlService.growlMessageSub.subscribe(gMsg => {
+    this.growlMessageSub = this.growlService.growlMessageSub.subscribe(gMsg => {
       this.growlMessages.push(gMsg);
     });
   }
@@ -21,7 +24,7 @@ export class GrowlMessageListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy () {
-    this.growlService.growlMessageSub.unsubscribe();
+    this.growlMessageSub.unsubscribe();
   }
 
 }

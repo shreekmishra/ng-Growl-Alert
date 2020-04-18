@@ -1,8 +1,8 @@
-<div class="backdrop" (click)="onClickClose()" *ngIf="alertMessage"></div>
-<div class="alert-box" *ngIf="alertMessage">
+<div class="backdrop" (click)="onClickClose()"></div>
+<div class="alert-box" (keyup)="onEscape($event)">
     <div class="alert-header" *ngIf="canShowHeader()">
         <h5 class="alert-title" *ngIf="alertMessage.alertTitle">{{ alertMessage.alertTitle}}</h5>
-        <button type="button" class="alert-btn close-btn" (click)="onClickClose()" *ngIf="alertMessage.allowClose && !alertMessage.isConfirmation">
+        <button type="button" class="alert-btn close-btn" tabindex="5" (click)="onClickClose()" *ngIf="alertMessage.allowClose && !alertMessage.isConfirmation">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -13,10 +13,10 @@
     </div>
     <div class="alert-footer">
         <div class="alert-actions">
-            <button type="button" class="alert-btn okay-btn" (click)="onClickOkay()" *ngIf="!alertMessage.isConfirmation">Okay</button>
-            <button type="button" class="alert-btn yes-btn" (click)="onClickYes()" *ngIf="alertMessage.isConfirmation">Yes</button>
-            <button type="button" class="alert-btn no-btn" (click)="onClickNo()" *ngIf="alertMessage.isConfirmation">No</button>
-            <button type="button" class="alert-btn cancel-btn" (click)="onClickCancel()" *ngIf="alertMessage.isConfirmation && alertMessage.allowCancel">Cancel</button>
+            <button type="button" tabindex="1" class="alert-btn okay-btn" (click)="onClickOkay()" *ngIf="!alertMessage.isConfirmation" #okayBtn>Okay</button>
+            <button type="button" tabindex="2" class="alert-btn yes-btn" (click)="onClickYes()" *ngIf="alertMessage.isConfirmation" #yesBtn>Yes</button>
+            <button type="button" tabindex="3" class="alert-btn no-btn" (click)="onClickNo()" *ngIf="alertMessage.isConfirmation">No</button>
+            <button type="button" tabindex="4" class="alert-btn cancel-btn" (click)="onClickCancel()" *ngIf="alertMessage.isConfirmation && alertMessage.allowCancel">Cancel</button>
         </div>
     </div>
 </div>

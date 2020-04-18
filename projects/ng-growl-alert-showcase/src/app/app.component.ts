@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgGrowlAlertService } from 'projects/ng-growl-alert/src/public-api';
+import { NgGrowlAlertService, AlertConfirmResponse } from 'projects/ng-growl-alert/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -8,68 +8,75 @@ import { NgGrowlAlertService } from 'projects/ng-growl-alert/src/public-api';
 })
 export class AppComponent {
 
-  constructor (private alertService: NgGrowlAlertService) { }
+  constructor(private alertService: NgGrowlAlertService) { }
 
-  
+  private analyseAlertResponse(response: AlertConfirmResponse) {
+    if (response === AlertConfirmResponse.ALERT_CLOSE) {
+      console.log("Alert Box Closed");
+    } else if (response === AlertConfirmResponse.ALERT_OKAY) {
+      console.log("Okay Clicked on Alert Box");
+    } else {
+      console.log("Unknown Response");
+    }
+  }
+
+  private analyseConfirmResponse(response: AlertConfirmResponse) {
+    if (response === AlertConfirmResponse.CONFIRM_CANCEL) {
+      console.log("Confirm Box Cancelled");
+    } else if (response === AlertConfirmResponse.CONFIRM_YES) {
+      console.log("Confirmation: YES");
+    } else if (response === AlertConfirmResponse.CONFIRM_NO) {
+      console.log("Confirmation: NO");
+    } else {
+      console.log("Unknown Response");
+    }
+  }
+
   showAlert1() {
     this.alertService.alert("This is an alert message.").subscribe(value => {
-      console.log("showAlert1 = " + value);
+      this.analyseAlertResponse(value);
     });
   }
 
   showAlert2() {
     this.alertService.alert("This is an alert message with title.", "Alert Message").subscribe(value => {
-      console.log("showAlert2 = " + value);
+      this.analyseAlertResponse(value);
     });
   }
 
   showAlert3() {
     this.alertService.alert("This is an alert message with Cross button.", null, true).subscribe(value => {
-      console.log("showAlert3 = " + value);
+      this.analyseAlertResponse(value);
     });
   }
 
   showAlert4() {
     this.alertService.alert("This is an alert message with title and Cross button.", "Alert Message", true).subscribe(value => {
-      console.log("showAlert3 = " + value);
+      this.analyseAlertResponse(value);
     });
   }
 
   showConfirm1() {
     this.alertService.confirm("This is a confirmation box.").subscribe(value => {
-      console.log("showConfirm1 = " + value);
+      this.analyseConfirmResponse(value);
     });
   }
 
   showConfirm2() {
     this.alertService.confirm("This is a confirmation box with title.", "Confirm Dialog").subscribe(value => {
-      console.log("showConfirm2 = " + value);
+      this.analyseConfirmResponse(value);
     });
   }
 
   showConfirm3() {
     this.alertService.confirm("This is a confirmation box with cancel.", null, true).subscribe(value => {
-      if (value === null) {
-        console.log("showConfirm3 = null");
-      } else if (value){
-        console.log("showConfirm3 = true");
-      } else {
-        console.log("showConfirm3 = false");
-      }
-      
+      this.analyseConfirmResponse(value);
     });
   }
-  
+
   showConfirm4() {
     this.alertService.confirm("This is a confirmation box with title and cancel.", "Confirm Dialog with cancel", true).subscribe(value => {
-      if (value === null) {
-        console.log("showConfirm3 = null");
-      } else if (value){
-        console.log("showConfirm3 = true");
-      } else {
-        console.log("showConfirm3 = false");
-      }
-      
+      this.analyseConfirmResponse(value);
     });
   }
 

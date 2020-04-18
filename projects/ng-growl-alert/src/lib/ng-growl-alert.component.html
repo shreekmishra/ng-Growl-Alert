@@ -1,2 +1,2 @@
-<alert-message></alert-message>
+<alert-message *ngIf="alertMessage" [message]="alertMessage" (onClose)="alertClose($event)"></alert-message>
 <growl-message-list></growl-message-list>
