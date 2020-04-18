@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgGrowlAlertService, AlertMessage } from './ng-growl-alert.service';
+import { NgGrowlAlertService, AlertMessage, AlertConfirmResponse } from './ng-growl-alert.service';
 import { Subscription } from 'rxjs';
-import { AlertConfirmResponse } from 'ng-growl-alert/public-api';
 
 @Component({
   selector: 'ng-growl-alert',
